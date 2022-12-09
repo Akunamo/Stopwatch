@@ -26,24 +26,26 @@ stopBtn.addEventListener("click", () => {
 resetBtn.addEventListener("click", () => {
   clearInterval(int);
   int = 1
-  timerCount.innerText = "00:00:00:000";
+  timerCount.innerText = "00:00:00:00";
 });
 
 function timer() {
   miliseconds++;
   // if value is smaller than 1 .floor set it to 0
   seconds = Math.floor(miliseconds / 100);
-  minutes = Math.floor(seconds / 10);
+  minutes = Math.floor(seconds / 60);
   hours = Math.floor(minutes / 60);
   // after matching the % the value will set to 1
   let ms = miliseconds % 100;
   let s = seconds % 60;
   let m = minutes % 60;
 
+  // we dont want to show any value as only 1 we want
+  //  to show 01 so we add a string before the value
   let h = hours < 10 ? "0" + hours : hours;
   m = m < 10 ? "0" + m : m;
   s = s < 10 ? "0" + s : s;
-  ms = ms < 100 ? "0" + ms : ms;
+  ms = ms < 10 ? "0" + ms : ms;
   timerCount.innerText = `${h}:${m}:${s}:${ms}`;
 }
 
